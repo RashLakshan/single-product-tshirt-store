@@ -3,7 +3,7 @@
 import { siteConfig } from "@/config/site";
 import { useOrder } from "@/components/OrderProvider";
 import { ArrowUpRight, MinusIcon, PlusIcon, WhatsAppIcon } from "@/components/icons";
-import { formatPrice, getShippingEstimate } from "@/lib/site";
+import { formatPrice, getShippingEstimate, withBasePath } from "@/lib/site";
 
 function DetailsRow({
   title,
@@ -204,8 +204,8 @@ export function ProductPanel() {
           <p>{siteConfig.product.shippingSummary}</p>
           <p>{siteConfig.product.returnsSummary}</p>
           <p className="product-detail__links">
-            <a href="/policies/shipping/">Shipping policy</a>
-            <a href="/policies/returns/">Returns policy</a>
+            <a href={withBasePath("/policies/shipping/")}>Shipping policy</a>
+            <a href={withBasePath("/policies/returns/")}>Returns policy</a>
           </p>
         </DetailsRow>
       </div>

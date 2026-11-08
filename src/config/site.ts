@@ -43,8 +43,11 @@ export type Policy = {
 };
 
 export const siteConfig = {
-  /** OWNER: replace with the production domain before deployment. */
-  siteUrl: "https://aurel-eclipse.example",
+  /** OWNER: replace with the production URL before deployment. */
+  siteUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://rashlakshan.github.io/single-product-tshirt-store",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ?? "",
 
   brand: {
     name: "AUREL",

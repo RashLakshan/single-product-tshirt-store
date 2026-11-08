@@ -1,4 +1,4 @@
-import { cn } from "@/lib/site";
+import { cn, withBasePath } from "@/lib/site";
 
 export const imageSets = {
   hero: {
@@ -48,7 +48,7 @@ type ResponsiveImageProps = {
 
 function buildSrcSet(name: ImageName, extension: "avif" | "webp") {
   return imageSets[name].widths
-    .map((width) => `/images/${name}-${width}.${extension} ${width}w`)
+    .map((width) => `${withBasePath(`/images/${name}-${width}.${extension}`)} ${width}w`)
     .join(", ");
 }
 
@@ -71,7 +71,7 @@ export function ResponsiveImage({
       <source type="image/webp" srcSet={buildSrcSet(name, "webp")} sizes={sizes} />
       <img
         className={imgClassName}
-        src={`/images/${name}-${largest}.webp`}
+        src={withBasePath(`/images/${name}-${largest}.webp`)}
         alt={alt}
         width={width ?? set.width}
         height={height ?? set.height}

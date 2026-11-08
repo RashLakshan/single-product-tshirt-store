@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 import { OrderButton } from "@/components/OrderButton";
 import { useDialog } from "@/components/useDialog";
 import { CloseIcon, EclipseMark, WhatsAppIcon } from "@/components/icons";
-import { getGeneralWhatsAppUrl } from "@/lib/site";
+import { getGeneralWhatsAppUrl, withBasePath } from "@/lib/site";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,7 +26,7 @@ export function SiteHeader() {
     <>
       <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
         <div className="site-header__inner">
-          <a className="brand-logo" href="/" aria-label={`${siteConfig.brand.name} — home`}>
+          <a className="brand-logo" href={withBasePath("/")} aria-label={`${siteConfig.brand.name} — home`}>
             <EclipseMark className="brand-logo__mark" />
             <span className="brand-logo__word">{siteConfig.brand.wordmark}</span>
             <span className="brand-logo__sub">{siteConfig.brand.logoSubmark}</span>
@@ -34,7 +34,7 @@ export function SiteHeader() {
 
           <nav className="desktop-nav" aria-label="Main navigation">
             {siteConfig.nav.map((item) => (
-              <a key={item.href} href={item.href}>
+              <a key={item.href} href={withBasePath(item.href)}>
                 {item.label}
               </a>
             ))}
@@ -82,7 +82,7 @@ export function SiteHeader() {
                 <div className="mobile-menu__top">
                   <a
                     className="brand-logo brand-logo--light"
-                    href="/"
+                    href={withBasePath("/")}
                     onClick={() => setMenuOpen(false)}
                   >
                     <EclipseMark className="brand-logo__mark" />
@@ -103,14 +103,14 @@ export function SiteHeader() {
                   {siteConfig.nav.map((item, index) => (
                     <a
                       key={item.href}
-                      href={item.href}
+                      href={withBasePath(item.href)}
                       onClick={() => setMenuOpen(false)}
                     >
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       {item.label}
                     </a>
                   ))}
-                  <a href="/#size-guide" onClick={() => setMenuOpen(false)}>
+                  <a href={withBasePath("/#size-guide")} onClick={() => setMenuOpen(false)}>
                     <span>06</span>
                     Size guide
                   </a>

@@ -15,6 +15,12 @@ export function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
+/** Prefix local public and page URLs when deployed below a repository path. */
+export function withBasePath(path: string) {
+  if (!path.startsWith("/") || path.startsWith("//")) return path;
+  return `${siteConfig.basePath}${path}`;
+}
+
 export function getGeneralWhatsAppUrl() {
   return buildWhatsAppUrl(siteConfig.whatsapp.supportMessage);
 }

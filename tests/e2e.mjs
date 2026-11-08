@@ -27,7 +27,7 @@ assert.match(await page.locator('meta[name="description"]').getAttribute("conten
 assert.match(await page.locator('meta[property="og:image"]').getAttribute("content"), /og-image/);
 assert.equal(
   await page.locator('link[rel="canonical"]').getAttribute("href"),
-  "https://aurel-eclipse.example/",
+  "https://rashlakshan.github.io/single-product-tshirt-store/",
 );
 assert.equal(await page.locator('script[type="application/ld+json"]').count(), 0, "no unverified product schema");
 

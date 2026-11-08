@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { siteConfig, type Policy } from "@/config/site";
 import { Footer } from "@/components/Footer";
 import { ArrowUpRight, EclipseMark, WhatsAppIcon } from "@/components/icons";
-import { getGeneralWhatsAppUrl } from "@/lib/site";
+import { getGeneralWhatsAppUrl, withBasePath } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -23,11 +23,13 @@ export async function generateMetadata({
   return {
     title: policy.title,
     description: policy.intro,
-    alternates: { canonical: `/policies/${policy.slug}/` },
+    alternates: {
+      canonical: `${siteConfig.siteUrl.replace(/\/$/, "")}/policies/${policy.slug}/`,
+    },
     openGraph: {
       title: `${policy.title} — ${siteConfig.brand.name}`,
       description: policy.intro,
-      url: `/policies/${policy.slug}/`,
+      url: `${siteConfig.siteUrl.replace(/\/$/, "")}/policies/${policy.slug}/`,
     },
   };
 }
@@ -36,12 +38,12 @@ function PolicyContent({ policy }: { policy: Policy }) {
   return (
     <div className="policy-page">
       <header className="policy-header">
-        <a className="brand-logo" href="/" aria-label={`${siteConfig.brand.name} — home`}>
+        <a className="brand-logo" href={withBasePath("/")} aria-label={`${siteConfig.brand.name} — home`}>
           <EclipseMark className="brand-logo__mark" />
           <span className="brand-logo__word">{siteConfig.brand.wordmark}</span>
           <span className="brand-logo__sub">{siteConfig.brand.logoSubmark}</span>
         </a>
-        <a className="policy-header__back" href="/">
+        <a className="policy-header__back" href={withBasePath("/")}>
           Back to the studio <ArrowUpRight />
         </a>
       </header>

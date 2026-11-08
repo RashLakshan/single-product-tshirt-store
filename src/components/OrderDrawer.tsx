@@ -11,7 +11,7 @@ import {
   PlusIcon,
   WhatsAppIcon,
 } from "@/components/icons";
-import { formatPrice, getShippingEstimate } from "@/lib/site";
+import { formatPrice, getShippingEstimate, withBasePath } from "@/lib/site";
 import {
   createWhatsAppOrderUrl,
   initialOrderValues,
@@ -269,7 +269,7 @@ export function OrderDrawer() {
               <div className="form-group" data-invalid={Boolean(errors.size)}>
                 <div className="field__label-row">
                   <span className="field__label">Size</span>
-                  <a href="/#size-guide" className="inline-link" onClick={closeOrder}>
+                  <a href={withBasePath("/#size-guide")} className="inline-link" onClick={closeOrder}>
                     Size guide
                   </a>
                 </div>
@@ -517,7 +517,7 @@ export function OrderDrawer() {
             </button>
             <p className="form-consent">
               By continuing, your details will be included in a WhatsApp message to the studio.
-              Read the <a href="/policies/privacy/">privacy policy</a>. You will be able to review
+              Read the <a href={withBasePath("/policies/privacy/")}>privacy policy</a>. You will be able to review
               the message before sending.
             </p>
             <p className="sr-only" aria-live="polite">

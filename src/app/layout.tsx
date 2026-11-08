@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { withBasePath } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -20,18 +21,18 @@ export const metadata: Metadata = {
   creator: siteConfig.brand.fullName,
   publisher: siteConfig.brand.fullName,
   alternates: {
-    canonical: "/",
+    canonical: `${siteConfig.siteUrl.replace(/\/$/, "")}/`,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: `${siteConfig.siteUrl.replace(/\/$/, "")}/`,
     siteName: siteConfig.brand.fullName,
     title: `${siteConfig.brand.name} — ${siteConfig.product.name}`,
     description: siteConfig.product.shortDescription,
     images: [
       {
-        url: "/og-image.jpg",
+        url: `${siteConfig.siteUrl.replace(/\/$/, "")}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: `${siteConfig.product.name} by ${siteConfig.brand.name}`,
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.brand.name} — ${siteConfig.product.name}`,
     description: siteConfig.product.shortDescription,
-    images: ["/og-image.jpg"],
+    images: [`${siteConfig.siteUrl.replace(/\/$/, "")}/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -55,9 +56,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: `${siteConfig.siteUrl.replace(/\/$/, "")}/icon.svg`,
+    shortcut: `${siteConfig.siteUrl.replace(/\/$/, "")}/icon.svg`,
+    apple: `${siteConfig.siteUrl.replace(/\/$/, "")}/icon.svg`,
   },
   category: "fashion",
 };
@@ -75,14 +76,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link
           rel="preload"
-          href="/fonts/archivo-latin.woff2"
+          href={withBasePath("/fonts/archivo-latin.woff2")}
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/instrument-serif-italic-latin.woff2"
+          href={withBasePath("/fonts/instrument-serif-italic-latin.woff2")}
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"

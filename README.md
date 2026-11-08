@@ -358,6 +358,10 @@ To test without messaging a customer, temporarily set the WhatsApp number to you
 
 Connect the repository, or drag the generated `out/` folder into Netlify Drop. Add the domain and update `siteUrl`.
 
+### GitHub Pages
+
+The repository includes `.github/workflows/deploy-pages.yml`. It builds the static export and deploys `out/` to the project site at `https://rashlakshan.github.io/single-product-tshirt-store/` whenever `main` is updated. In the repository settings, open **Pages** and choose **GitHub Actions** as the publishing source. The workflow sets `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_SITE_URL` so links, images, fonts, canonical URLs and the sitemap use the repository-site path. Update those workflow values if the repository name or owner changes. For a custom domain, set `NEXT_PUBLIC_BASE_PATH` to an empty value and set `NEXT_PUBLIC_SITE_URL` to the domain.
+
 ### Any static host
 
 Upload the contents of `out/` to Cloudflare Pages, GitHub Pages, S3/CloudFront, etc. Clean URLs use trailing slashes (`/policies/shipping/`).
