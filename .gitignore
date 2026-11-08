@@ -1,0 +1,30 @@
+node_modules/
+.next/
+out/
+.npm-cache/
+.chrome-profile/
+tsconfig.tsbuildinfo
+*.log
+.DS_Store
+Thumbs.db
+
+# Generated test output
+art-source/test-shots/
+art-source/responsive/
+art-source/screens/
+
+# Unused raw downloads (the final image sources are kept in art-source/final)
+art-source/candidates/
+art-source/composites/
+art-source/full-*.jpg
+art-source/pexels-*.jpg
+art-source/test-*.jpg
+art-source/*-test.jpg
+art-source/*-v1.jpg
+art-source/contact-sheet.jpg
+art-source/hero-master.jpg
+art-source/hero-shirt-area.jpg
+art-source/shirt-crop.jpg
+art-source/chest-crop.jpg
+art-source/back-crop.jpg
+art-source/fonts.css
